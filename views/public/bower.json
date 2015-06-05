@@ -1,0 +1,21 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "homepage": "https://github.com/weishiji/express4-mongoose",
+  "authors": [
+    "刘小光 <liuxiaoguang@zihua.com.cn>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "html5shiv": "~3.7.2",
+    "respond": "~1.4.2"
+  }
+}
