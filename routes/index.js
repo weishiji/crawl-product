@@ -2,21 +2,12 @@ var express = require('express');
 var router = express.Router();
 var db = require('../server/db');
 var async = require('async');
-
 var request = require('request');
-var cookieRequest = function (userRequest, userResponse, url, callback) {
-    var options = {
-        url: url,
-        headers: {}
-    };
-    options.headers.Cookie = userRequest.header('Cookie'); // 将用户的 Cookie 传递给后台服务器
-    request(options, function (error, response, body) {
-        userResponse.setHeader('Cookie', response.headers.cookie);
-        callback.apply(null, arguments);
-    });
-};
+var fs = require('fs');
+console.log(__dirname)
+var jquery = fs.readFileSync(__dirname+'/../node_modules/jquery/dist/jquery.min.js',"utf-8");
 
-
+var jsdom = require("node-jsdom");
 /* GET home page. */
 router.get('/', function(req, res, next) {
     var sess = req.session;
@@ -52,9 +43,16 @@ router.get('/', function(req, res, next) {
 
 router.get('/about',function(req,res,next){
     //var session = req.session
-    cookieRequest(req,res,'http://localhost/test.php',function(err,response,body){
-        res.render('index/about')
-    })
+    jsdom.env({
+      url : "http://www.baidu.com",
+      src : [jquery],
+      done : function (errors, window) {
+            var $ = window.$
+            console.log($('body').html())
+      }
+    });
+    
+    res.render('index/about')
 
 })
 
