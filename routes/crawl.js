@@ -7,11 +7,14 @@ var db = require('../server/db');
 
 var phantom = require('phantom');
 
+var aliurl = "http://maliangshizhuang.1688.com"
+//var aliurl = "http://test.weixueji.com"
+var aliulr = 'http://maliangshizhuang.1688.com/page/offerlist.htm?spm=a2615.7691456.0.0.NhtxXP&showType=windows&tradenumFilter=false&sampleFilter=false&mixFilter=false&privateFilter=false&mobileOfferFilter=%24mobileOfferFilter&groupFilter=false&sortType=tradenumdown&pageNum=2#search-bar'
 
 router.get('/app', function (req, res, next) {
     phantom.create(function (ph) {
         ph.createPage(function (page) {
-            page.open("http://test.weixueji.com", function (status) {
+            page.open(aliurl, function (status) {
                 console.log(status,'++++++++++++++++++++++++++')
                 setTimeout(function(){
                     page.evaluate(function () {
